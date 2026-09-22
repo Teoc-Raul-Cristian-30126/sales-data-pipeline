@@ -39,12 +39,16 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas psycopg[binary] python-dotenv boto3
+          pip install pandas psycopg[binary] python-dotenv boto3 pytest
           pip install dbt-core dbt-postgres
 
       - name: Generate dataset
         run: |
           python src/ingestion/generate_dataset.py
+
+      - name: Run Python tests
+        run: |
+          pytest tests -v
 
       - name: Create source PostgreSQL tables
         env:
