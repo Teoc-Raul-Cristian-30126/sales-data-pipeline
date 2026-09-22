@@ -4,8 +4,8 @@ dbt_project:
   outputs:
     dev:
       type: postgres
-      host: host.docker.internal
-      port: 5432
+      host: "{{ env_var('DBT_DB_HOST') }}"
+      port: "{{ env_var('DBT_DB_PORT') | int }}"
       user: postgres
       password: "{{ env_var('DBT_DB_PASSWORD') }}"
       dbname: sales_dw

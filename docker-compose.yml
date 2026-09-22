@@ -15,7 +15,8 @@ x-airflow-common:
     DB_NAME: sales_dw
     DB_USER: postgres
     DB_PASSWORD: ${DB_PASSWORD}
-
+    DBT_DB_HOST: host.docker.internal
+    DBT_DB_PORT: "5432"
     DBT_DB_PASSWORD: ${DB_PASSWORD}
 
     AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
