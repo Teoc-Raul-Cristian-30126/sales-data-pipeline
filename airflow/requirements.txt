@@ -1,0 +1,7 @@
+pandas
+psycopg[binary]
+python-dotenv
+boto3
+pyspark
+dbt-core
+dbt-postgres

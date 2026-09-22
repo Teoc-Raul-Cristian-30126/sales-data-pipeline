@@ -1,0 +1,118 @@
+version: 2
+
+models:
+  - name: stg_products
+    description: "Staging view for product data."
+    columns:
+      - name: product_id
+        description: "Unique product identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: "Product name."
+        data_tests:
+          - not_null
+
+      - name: category
+        description: "Product category."
+        data_tests:
+          - not_null
+
+  - name: stg_stores
+    description: "Staging view for store data."
+    columns:
+      - name: store_id
+        description: "Unique store identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: store_name
+        description: "Store name."
+        data_tests:
+          - not_null
+
+      - name: city
+        description: "City where the store is located."
+        data_tests:
+          - not_null
+
+  - name: stg_sales
+    description: "Staging view for sales fact data."
+    columns:
+      - name: sale_id
+        description: "Unique sale identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: date_key
+        description: "Foreign key to the date dimension."
+        data_tests:
+          - not_null
+
+      - name: product_key
+        description: "Foreign key to the product dimension."
+        data_tests:
+          - not_null
+
+      - name: store_key
+        description: "Foreign key to the store dimension."
+        data_tests:
+          - not_null
+
+      - name: quantity
+        description: "Number of units sold."
+        data_tests:
+          - not_null
+
+      - name: unit_price
+        description: "Price per unit."
+        data_tests:
+          - not_null
+
+      - name: total_amount
+        description: "Total sale amount."
+        data_tests:
+          - not_null
+
+  - name: monthly_revenue
+    description: "Monthly sales revenue aggregated by year and month."
+    columns:
+      - name: year
+        data_tests:
+          - not_null
+
+      - name: month
+        data_tests:
+          - not_null
+
+      - name: total_revenue
+        data_tests:
+          - not_null
+
+  - name: category_revenue
+    description: "Sales revenue aggregated by product category."
+    columns:
+      - name: category
+        data_tests:
+          - not_null
+          - unique
+
+      - name: total_revenue
+        data_tests:
+          - not_null
+
+  - name: store_revenue
+    description: "Sales revenue aggregated by store."
+    columns:
+      - name: store_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: total_revenue
+        data_tests:
+          - not_null

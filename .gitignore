@@ -1,0 +1,31 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.idea/
+
+# Python
+.pytest_cache/
+
+# Spark
+*.log
+metastore_db/
+spark-warehouse/
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+dbt_project/.user.yml
+
+# Airflow
+airflow/logs/*
+!airflow/logs/.gitkeep
+
+# Generated data
+data/raw/
+data/processed/
+
+# OS
+.DS_Store
+Thumbs.db
