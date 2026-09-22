@@ -46,7 +46,7 @@ jobs:
         run: |
           python src/ingestion/generate_dataset.py
 
-      - name: Create PostgreSQL tables
+      - name: Create source PostgreSQL tables
         env:
           PGPASSWORD: postgres
         run: |
@@ -57,7 +57,7 @@ jobs:
             -p 5432 \
             -U postgres \
             -d sales_dw \
-            -f query/create_tables.sql
+            -f scripts/create_source_tables.sql
 
       - name: Load data into PostgreSQL
         env:
@@ -68,6 +68,17 @@ jobs:
           DB_PASSWORD: postgres
         run: |
           python src/ingestion/load_to_postgres.py
+
+      - name: Create and populate warehouse
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql \
+            -h localhost \
+            -p 5432 \
+            -U postgres \
+            -d sales_dw \
+            -f scripts/create_warehouse.sql
 
       - name: dbt debug
         env:
